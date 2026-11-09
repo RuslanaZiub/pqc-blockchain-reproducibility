@@ -1,0 +1,67 @@
+{
+  "title": "Reproducibility package for “Network propagation and node-level performance of post-quantum signatures in blockchain systems”",
+  "version": "1.0",
+  "upload_type": "dataset",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Ziubina, Ruslana",
+      "orcid": "0000-0002-8654-6981",
+      "affiliation": "University of Bielsko-Biala"
+    },
+    {
+      "name": "Tkach, Anna",
+      "orcid": "0009-0002-2205-4942",
+      "affiliation": "University of Bielsko-Biala"
+    },
+    {
+      "name": "Stuglik, Martyna",
+      "orcid": "0009-0000-0373-3515",
+      "affiliation": "University of Bielsko-Biala"
+    },
+    {
+      "name": "Shevchuk, Ruslan",
+      "orcid": "0000-0001-5381-9528",
+      "affiliation": "University of Bielsko-Biala"
+    },
+    {
+      "name": "Adamyk, Bogdan",
+      "orcid": "0000-0001-5136-3854",
+      "affiliation": "Aston University"
+    }
+  ],
+  "description": "Reproducibility package supporting the study “Network propagation and node-level performance of post-quantum signatures in blockchain systems”. It contains processed datasets, figure/table source data, analysis scripts, modified SimBlock code and run scripts, and the final Solochain v3b load-test harness, runtime patch, custom pallet, test vectors and node binaries.",
+  "keywords": [
+    "post-quantum cryptography",
+    "blockchain",
+    "digital signatures",
+    "block propagation",
+    "compact block relay",
+    "SimBlock",
+    "Substrate",
+    "Polkadot SDK",
+    "ML-DSA",
+    "SLH-DSA",
+    "Dilithium",
+    "SPHINCS+",
+    "reproducibility",
+    "performance evaluation"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dsg-titech/simblock",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/paritytech/polkadot-sdk-solochain-template",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    }
+  ],
+  "grants": [
+    {
+      "id": "10.13039/501100000780::101235440"
+    }
+  ]
+}

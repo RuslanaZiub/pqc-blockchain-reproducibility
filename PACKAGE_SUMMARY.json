@@ -1,0 +1,27 @@
+{
+  "package_version": "1.0-rc2-clean",
+  "status": "release candidate",
+  "simblock_primary_runs": 1200,
+  "simblock_stable_pilot_runs": 15,
+  "simblock_stable_full_runs": 30,
+  "simblock_cbr_runs": 30,
+  "solochain_v3b_runs": 90,
+  "solochain_repeat_v3_runs": 90,
+  "duration_study_runs": 225,
+  "solochain_code_exact_v3b": true,
+  "solochain_binaries_included": true,
+  "raw_rust_microbenchmark_repetition_csv_included": false,
+  "row_counts": {
+    "data/simblock_primary/run_coverage6s.csv": 1200,
+    "data/simblock_primary/scenario_coverage6s.csv": 120,
+    "data/simblock_stable_pilot/run_coverage.csv": 15,
+    "data/simblock_stable_full/run_coverage.csv": 30,
+    "data/simblock_cbr/run_coverage.csv": 30,
+    "data/solochain_v3b/surowe_wyniki_v3b.csv": 90,
+    "data/solochain_v3b/suma_wyniki_v3b.csv": 18,
+    "data/solochain_repeat_v3/surowe_wyniki_v3.csv": 90,
+    "data/loadtest_duration/wyniki_duration_sweep.csv": 225
+  },
+  "scope": "minimal reproducibility package; internal reports and diagnostic artifacts removed",
+  "file_count_excluding_manifest": 58
+}

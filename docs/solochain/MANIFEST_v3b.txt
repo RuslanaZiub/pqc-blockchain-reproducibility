@@ -1,0 +1,43 @@
+Kod uzyty w serii v3b (test default vs raised, 90 runow)
+commit: 80aa5b37f55ca0982a668f89bfb691f56e30be9c  Trzecia wersja testow, seria 2 (v3b)
+python: Python 3.14.4
+locust: locust 2.46.2 from /home/martyna/pqc_env/lib/python3.14/site-packages/locust (Python 3.14.4)
+uruchomienie: M_LOGDIR=logs_final_v3b bash run_matrix_v3b.sh   (NODE_BIN_DEFAULT=~/node-default, NODE_BIN_RAISED=~/node-raised)
+
+== binarki wezla (sha256 i wersja):
+f2e573d31d2e0e1a6f039790f80eb1348ca8dbf357f8a7bc767c290e9ba3ac0e  /home/martyna/node-default
+node-default 0.1.0-2610f22b838
+b4f443448138199bfad3253ef1dfcc3815d772d985b222f4f70a0693ea2f0eb6  /home/martyna/node-raised
+node-raised 0.1.0-2610f22b838
+
+== budowa wezla
+zrodla: https://github.com/paritytech/polkadot-sdk-solochain-template.git
+commit: 2610f22b838f65bfeec9791ede17827b74e1ac50 (Update the solochain template to stable2503 (#25), 2025-05-12); skrot 2610f22b838 widnieje w wersji obu binarek
+przygotowanie zrodel: git checkout 2610f22b838; mkdir -p pallets; cp -r pqc-bench-pallet pallets/pqc-bench; git apply node_runtime_changes_v2.patch
+patch zmienia: Cargo.lock, Cargo.toml, node/src/service.rs, runtime/Cargo.toml, runtime/src/configs/mod.rs, runtime/src/lib.rs (dodaje pallet pqc-bench, funkcje raised-limits, zmienna PQC_BLOCK_SIZE_LIMIT w proposerze)
+budowa node-default: CXXFLAGS="-include cstdint" cargo build --release -p solochain-template-node -j 4
+budowa node-raised:  CXXFLAGS="-include cstdint" cargo build --release -p solochain-template-node --features solochain-template-runtime/raised-limits -j 4
+binarka powstaje w target/release/solochain-template-node i jest zapisana jako node-default (1 XI 2026 18:00) oraz node-raised (1 XI 2026 20:02)
+default: BlockLength 5 MiB, max_block ref_time 2 s; raised: BlockLength 20 MiB, max_block ref_time 200 s; w testach raised wezel uruchamiany ze zmienna PQC_BLOCK_SIZE_LIMIT=20971520 (limit bloku w proposerze), co robi run_matrix_v3b.sh
+uwaga: budowa od nowa nie musi dac binarki identycznej bajt w bajt (runtime wasm); do porownania sluza sumy kontrolne dolaczonych binarek
+
+== srodowisko
+system: Ubuntu 26.04 LTS, jadro 7.0.0-31-generic, glibc 2.43
+rust: rustc 1.97.1 (8bab26f4f 2026-07-14), cargo 1.97.1
+maszyna wirtualna: 8 vCPU (4 rdzenie x 2 watki), procesor hosta Intel Core i5-12500H, 7,2 GiB RAM
+python: 3.14.4 w srodowisku pqc_env (wersje bibliotek w requirements_pqc_env.txt)
+
+== sha256 plikow:
+e2f0993fec7fa3587a16f13e02eebfe23e23aa1500ea716ccf2cd4a04c3e8d49  ./batch_accounts.json
+be2d657e3e390585aa8da0f97fb36fd818dbbaecfd1c31b3a44911bcbfb0bc37  ./fund_accounts.py
+d142f4af5ec1756c958f06a32d1875565248666364fe256997dfd0995fa7ca7c  ./locustfile_v3.py
+8a7e4fd150ea5a082d9b4ae8a965e530300dffa09dfb14b8d60489d4ec964926  ./matrix_v3b.out
+3e3b5697c2505035d0971759de266f1d76b5ecfa65fd3e380b9a349a4877eff1  ./node_runtime_changes_v2.patch
+581412c5d0218326e3178aa1705c6b56945c16d9a3c932919f9a47e838becf2f  ./pqc-bench-pallet/Cargo.toml
+21c7c4f4e9ebceb7d5a4dc30a6f006d46d9312c12bd3dc518b1b8e2a951bee35  ./pqc-bench-pallet/examples/gen_vectors.rs
+58cb439354c491aa4291997b9378a2cc30790e5d012da6b2b9f8ad3837749bd4  ./pqc-bench-pallet/src/lib.rs
+bd4c7f2f369ee0878ec4ab6f8f0873fdec834a93371fecb84230dd5f956ae091  ./pqc_test_vectors.json
+52894eaddd058841fbbc1483161931f2d241c609bb2db96a02c293c39d30a9c7  ./requirements_pqc_env.txt
+9a71129dac80dc33bcfe3ddfd04bac2b6c9c732737e7364dc25f10d5ccbde3d1  ./run_matrix_v3b.sh
+4d381ced1078907cf29e5346618ba132d28d87f451f9db5d877ec645360922aa  ./summarize_v3.py
+dc78d615d9cc4f1ad2ee3cd1b2a2ef78a34840cd9c95ff273387455e2b6557a7  ./tps_monitor_v3.py
